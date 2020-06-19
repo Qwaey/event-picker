@@ -72,4 +72,5 @@ lint/intermediates/
 lint/generated/
 lint/outputs/
 lint/tmp/
+ktlint.txt
 # lint/reports/

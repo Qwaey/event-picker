@@ -1,0 +1,49 @@
+/*
+ * Copyright 2020 Andrey Kitaev. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+task ktlint(type: JavaExec, group: "verification") {
+    description = "Check Kotlin code style."
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    ignoreExitValue true
+    args "src/**/*.kt", "--reporter=plain?group_by_file,output=ktlint.txt"
+    doLast {
+        def warnings = 0
+        new File("app/ktlint.txt").eachLine { line ->
+            if (line[0] == " ") {
+                warnings++
+            }
+        }
+        if (warnings > 0) {
+            printWarnings()
+            throw new GradleException("Found " + warnings + " issues.")
+        }
+    }
+}
+
+task ktlintFormat(type: JavaExec, group: "formatting") {
+    description = "Fix Kotlin code style deviations."
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
+}
+
+static def printWarnings() {
+    println("--------- Warnings ---------")
+    def lintFile = new File("app/ktlint.txt")
+    def lines = lintFile.readLines()
+
+    for (line in lines) {
+        println(line)
+    }
+}
