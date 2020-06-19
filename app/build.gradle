@@ -1,3 +1,6 @@
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
 /*
  * Copyright 2020 Andrey Kitaev. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,28 +16,61 @@
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.qwaey.eventpicker"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        applicationId rootProject.appId
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
+    configurations {
+        ktlint
+    }
+
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    applicationVariants.all { variant ->
+        changeApkFileName(variant)
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+def changeApkFileName(variant) {
+    variant.outputs.all { output ->
+        outputFileName = 'event_picker_' + versionCode + '_' + versionName + '_' + getDateTime() + '.apk'
+    }
+}
+
+static def getDateTime() {
+    DateFormat df = new SimpleDateFormat("yyyyMMddHHmm")
+    return df.format(new Date())
 }
 
 dependencies {
@@ -46,4 +82,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    // ktlint
+    ktlint 'com.github.shyiko:ktlint:0.31.0'
 }
+
+apply from: 'ktlint.gradle'
