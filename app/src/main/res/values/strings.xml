@@ -12,5 +12,11 @@
   -->
 
 <resources>
-    <string name="app_name">Event Picker</string>
+    // main
+    <string name="menu_list_view">Events</string>
+    <string name="menu_map">Map</string>
+    <string name="menu_profile">Profile</string>
+
+    // sign in
+    <string name="sign_in_with_google">Login with Google</string>
 </resources>
