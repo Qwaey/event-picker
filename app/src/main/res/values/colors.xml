@@ -18,6 +18,7 @@
     <color name="color_light_brown">#AD8E79</color>
     <color name="color_brown">#3E2214</color>
     <color name="color_white">#ffffff</color>
+    <color name="color_black">#000000</color>
 
     <color name="color_primary">@color/color_yellow</color>
     <color name="color_primary_dark">@color/color_green</color>
