@@ -14,15 +14,20 @@
 package com.qwaey.eventpicker
 
 import android.app.Application
-import com.qwaey.eventpicker.di.applicationModule
-import org.koin.android.ext.android.startKoin
+import com.qwaey.eventpicker.di.repositoryModule
+import com.qwaey.eventpicker.di.viewModelModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class ProjectApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
         appInstance = this
-        startKoin(this, listOf(applicationModule))
+        startKoin {
+            androidContext(this@ProjectApplication)
+            modules(listOf(repositoryModule, viewModelModule))
+        }
     }
 
     companion object {

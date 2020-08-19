@@ -75,5 +75,6 @@ lint/tmp/
 ktlint.txt
 # lint/reports/
 
-# google services json
+# google services json and api keys
 google-services.json
+secret_keys.xml

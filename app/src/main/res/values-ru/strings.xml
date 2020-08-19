@@ -19,4 +19,7 @@
 
     // sign in
     <string name="sign_in_with_google">Войти с помощью Google</string>
+
+    // map
+    <string name="map_add_event">Создать событие</string>
 </resources>
