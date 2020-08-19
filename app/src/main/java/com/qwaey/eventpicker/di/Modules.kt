@@ -14,8 +14,14 @@
 package com.qwaey.eventpicker.di
 
 import com.qwaey.eventpicker.model.repository.PreferencesRepository
-import org.koin.dsl.module.module
+import com.qwaey.eventpicker.ui.holdStart.HoldStartViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
-val applicationModule = module(override = true) {
+val repositoryModule = module(override = true) {
     single { PreferencesRepository() }
+}
+
+val viewModelModule = module {
+    viewModel { HoldStartViewModel(get()) }
 }

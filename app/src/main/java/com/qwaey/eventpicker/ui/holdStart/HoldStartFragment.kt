@@ -26,19 +26,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.snackbar.Snackbar
 import com.qwaey.eventpicker.R
 import com.qwaey.eventpicker.databinding.FragmentSignInBinding
-import com.qwaey.eventpicker.utils.getViewModel
 import com.qwaey.eventpicker.utils.observeNullable
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HoldStartFragment : Fragment() {
 
+    private val viewModel by viewModel<HoldStartViewModel>()
     private lateinit var binding: FragmentSignInBinding
-    private lateinit var viewModel: HoldStartViewModel
     private var googleSignInClient: GoogleSignInClient? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = getViewModel()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
