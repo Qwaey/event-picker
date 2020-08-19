@@ -11,19 +11,17 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <color name="color_yellow">#F5D84E</color>
-    <color name="color_green">#95A306</color>
-    <color name="color_turquoise">#358260</color>
-    <color name="color_light_brown">#AD8E79</color>
-    <color name="color_brown">#3E2214</color>
-    <color name="color_white">#ffffff</color>
-
-    <color name="color_primary">@color/color_yellow</color>
-    <color name="color_primary_dark">@color/color_green</color>
-    <color name="color_accent">@color/color_turquoise</color>
-
-    <color name="color_background">@color/color_light_brown</color>
-
-    <color name="color_sign_in_background">@color/color_yellow</color>
-</resources>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/list_fragment"
+        android:icon="@drawable/ic_view_list"
+        android:title="@string/menu_list_view" />
+    <item
+        android:id="@+id/map_fragment"
+        android:icon="@drawable/ic_map"
+        android:title="@string/menu_map" />
+    <item
+        android:id="@+id/profile_fragment"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/menu_profile" />
+</menu>

@@ -11,19 +11,9 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <color name="color_yellow">#F5D84E</color>
-    <color name="color_green">#95A306</color>
-    <color name="color_turquoise">#358260</color>
-    <color name="color_light_brown">#AD8E79</color>
-    <color name="color_brown">#3E2214</color>
-    <color name="color_white">#ffffff</color>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_default_color_secondary_variant">
 
-    <color name="color_primary">@color/color_yellow</color>
-    <color name="color_primary_dark">@color/color_green</color>
-    <color name="color_accent">@color/color_turquoise</color>
-
-    <color name="color_background">@color/color_light_brown</color>
-
-    <color name="color_sign_in_background">@color/color_yellow</color>
-</resources>
+</FrameLayout>
